@@ -30,3 +30,7 @@ if (!empty($_POST['name']) && !empty($_POST['description']) && !empty($_POST['pr
         $message = "All fields are required";
 } else
     $message = "All fields are required";
+
+header(header: "location: index.php?status=" . $status . "&&message=" . $message);
+
+?>
