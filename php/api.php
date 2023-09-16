@@ -11,6 +11,7 @@ if($conn){
  $sql = "select * from products";
  $results = mysqli_query($conn,$sql);
  if($results){
+    header("Content-Type: JSON");
     $i=0;
     while($row = mysqli_fetch_assoc($results)){
         $response[$i]['id'] = $row ['id'];
