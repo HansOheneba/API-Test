@@ -1,9 +1,5 @@
-const express = require('express');
 const app = require('express')();
 const PORT = 8080;
-
-app.use(express.json()); // Middleware to parse JSON request bodies
-
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
@@ -17,7 +13,6 @@ app.get('/tshirt', (req, res) => {
 });
 
 app.post('/tshirt/:id', (req, res) => {
-
     const { id } = req.params;
     const { logo } = req.body;
 
