@@ -12,6 +12,7 @@
       /* Adjust the duration and timing function as needed */
     }
   </style>
+  <title>Products CRUD</title>
 </head>
 
 <body class="bg-gray-100">
