@@ -13,7 +13,7 @@ $product = new Product($conn);
 if (isset($_GET['id'])) {
     $product_id = $_GET['id']; // Get the product ID from the URL
 
-    // Call the readOne method to get the product data for the specified ID
+    // Call readSingle method to get the product data for the specified ID
     $product_data = $product->readSingle($product_id);
 
     if ($product_data) {
