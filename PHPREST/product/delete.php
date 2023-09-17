@@ -8,8 +8,8 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,
 // Initializing API
 include_once('../core/initialize.php');
 
-// Instance of post
-$post = new Post($conn);
+// Instance of product
+$product = new Product($conn);
 
 // Check if an 'id' parameter is present in the query string
 if (isset($_GET['id'])) {
@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
 
 if (!empty($id)) {
     // Use the delete method to delete the product
-    if ($post->delete($id)) {
+    if ($product->delete($id)) {
         // The delete was successful
         echo json_encode(array('message' => 'Product deleted successfully.'));
     } else {

@@ -6,11 +6,11 @@ header('Content-Type: application/json');
 // Initializing API
 include_once('../core/initialize.php');
 
-// Instance of post
-$post = new Post($conn);
+// Instance of product
+$product = new Product($conn);
 
 // Call the read method to get specific columns for each record
-$result = $post->read();
+$result = $product->read();
 
 $response = array(); // Create an array to hold the response data
 

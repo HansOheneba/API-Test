@@ -9,8 +9,8 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,
 // Initializing API
 include_once('../core/initialize.php');
 
-// Instance of post
-$post = new Post($conn);
+// Instance of product
+$product = new Product($conn);
 
 // Get data from the request body (JSON)
 $data = json_decode(file_get_contents("php://input"));
@@ -22,8 +22,8 @@ if (
     !empty($data->description) &&
     isset($data->price)
 ) {
-    // Initialize and use the Post class
-    if ($post->update($data->id, $data->name, $data->description, $data->price)) {
+    // Initialize and use the Product class
+    if ($product->update($data->id, $data->name, $data->description, $data->price)) {
         // The update was successful
         echo json_encode(array('message' => 'Product updated successfully.'));
     } else {

@@ -1,12 +1,12 @@
 <?php
-class Post
+class Product
 {
 
     //db Stuff
     private $conn;
     private $table = 'product';
 
-    //Post Attributes
+    //Product Attributes
     public $id;
     public $name;
     public $description;
