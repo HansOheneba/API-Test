@@ -12,28 +12,36 @@ $post = new Post($conn);
 // Call the read method to get specific columns for each record
 $result = $post->read();
 
+$response = array(); // Create an array to hold the response data
+
 if ($result) {
     $row_count = $result->num_rows; // Get the number of rows
 
     if ($row_count > 0) {
-        // Loop through the results and list each row individually
-        while ($row = $result->fetch_assoc()) { // Use fetch_assoc() instead of PDO's fetch
-            // Access specific columns for each record
-            $id = $row['id'];
-            $name = $row['name'];
-            $description = $row['description'];
-            $price = $row['price'];
-            $dateCreated = $row['dateCreated'];
-            $dateModified = $row['dateModified'];
+        $response['data'] = array(); // Create a "data" key for the response array
 
-            // Output or process each row as needed
-            echo "ID: $id, Name: $name, Description: $description, Price: $price, Date Created: $dateCreated, Date Modified: $dateModified<br>";
+        // Loop through the results and add each product to the "data" array
+        while ($row = $result->fetch_assoc()) { // Use fetch_assoc() instead of PDO's fetch
+            $product = array(
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'description' => $row['description'],
+                'price' => $row['price'],
+                'dateCreated' => $row['dateCreated'],
+                'dateModified' => $row['dateModified']
+            );
+
+            $response['data'][] = $product; // Add the product to the "data" array
         }
+
+        echo json_encode($response); // Encode the response array as JSON
     } else {
-        echo "No products found.";
+        $response['message'] = "No products found.";
+        echo json_encode($response); // Encode the response array as JSON
     }
 } else {
-    echo "Failed to fetch data.";
+    $response['message'] = "Failed to fetch data.";
+    echo json_encode($response); // Encode the response array as JSON
 }
 
 
