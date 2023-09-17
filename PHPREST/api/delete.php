@@ -11,12 +11,18 @@ include_once('../core/initialize.php');
 // Instance of post
 $post = new Post($conn);
 
-// Get the product ID from the request
-$data = json_decode(file_get_contents("php://input"));
+// Check if an 'id' parameter is present in the query string
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} else {
+    // If 'id' is not in the query string, attempt to parse it from the request body
+    $data = json_decode(file_get_contents("php://input"));
+    $id = isset($data->id) ? $data->id : null;
+}
 
-if (!empty($data->id)) {
+if (!empty($id)) {
     // Use the delete method to delete the product
-    if ($post->delete($data->id)) {
+    if ($post->delete($id)) {
         // The delete was successful
         echo json_encode(array('message' => 'Product deleted successfully.'));
     } else {
@@ -27,4 +33,5 @@ if (!empty($data->id)) {
     // Invalid request data
     echo json_encode(array('message' => 'Invalid request data.'));
 }
+
 ?>
