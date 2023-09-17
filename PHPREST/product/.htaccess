@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteRule ^create$ create.php [L]
+RewriteRule ^read$ read.php [L]
+RewriteRule ^update$ update.php [L]
+RewriteRule ^delete$ delete.php [L]
+
