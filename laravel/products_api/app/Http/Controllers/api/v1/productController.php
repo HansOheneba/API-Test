@@ -22,11 +22,11 @@ class productController extends Controller
         return productResource::collection(Product::all());
     }
 
-//create a product record method
+    //create a product record method
     public function store(storeProductRequest $request)
     {
         $Product = Product::create($request->validated());
-        return new productResource ($Product);
+        return new productResource($Product);
     }
 
 
@@ -40,19 +40,20 @@ class productController extends Controller
 
     //Update a record
     public function update(updateProductRequest $request, product $product)
-
     {
         $product->update($request->validated());
         return productResource::make($product);
     }
 
 
- public function destroy(product $product)
- {
-    $product->delete();
 
-    return response()->noContent();
- }
+    //delete a product record
+    public function destroy(product $product)
+    {
+        $product->delete();
+
+        return response()->noContent();
+    }
 
 
 
