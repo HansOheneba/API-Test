@@ -12,6 +12,7 @@ switch ($action) {
             $products = $product->read();
             http_response_code(200);
             header('Content-Type: application/json');
+            echo json_encode($products);
         } catch (PDOException $e) {
             http_response_code(500);
             echo json_encode(array("message" => "Database error: " . $e->getMessage()));
