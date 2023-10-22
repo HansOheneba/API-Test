@@ -19,13 +19,13 @@ class Product
     {
         try {
             $query = "SELECT * FROM {$this->table}";
-
+    
             $stmt = $this->db->prepare($query);
-
+    
             $stmt->execute();
-
+    
             $products = array();
-
+    
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $product = array(
                     'id' => $row['id'],
@@ -37,13 +37,13 @@ class Product
                 );
                 $products[] = $product;
             }
-
+    
             header('Content-Type: application/json');
             echo json_encode($products);
         } catch (PDOException $e) {
-            echo "Database Error: " . $e->getMessage();
         }
     }
+    
 
 
     //Create FUnction
